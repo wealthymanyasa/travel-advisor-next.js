@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CircularProgress, Grid, Typography , InputLabel , MenuItem ,Select, FormControl } from '@material-ui/core';
+import PlaceDetails from '../PlaceDetails/PlaceDetails';
 
 import useStyles  from './styles.js'; 
 
@@ -8,12 +9,26 @@ const List = () => {
     const [type, setType ] = useState('restaurants');
     const [rating ,setRating ] = useState('');
 
+    const places = [
+        {name : 'Cool place'},        
+        {name : 'Best Beer'},        
+        {name : 'Best Steak'},
+        {name : 'Cool place'},        
+        {name : 'Best Beer'},        
+        {name : 'Best Steak'},
+        {name : 'Cool place'},        
+        {name : 'Best Beer'},        
+        {name : 'Best Steak'},
+      
+      
+    ];
+
     return(
        <div className='{classes.container}'>
            <Typography variant='h4'>
-                 Restaurants Hotels and Attractions around you
+                 Restaurants, Hotels and Attractions around you
            </Typography>
-           <FormControl className='classes.formControl'>
+           <FormControl className={classes.formControl}>
                    <inputLabel>Type</inputLabel>
                    <Select value={type} onChange={(e) => setType(e.target.value)}>
                        <MenuItem value="restaurants">Restaurants</MenuItem>
@@ -22,7 +37,7 @@ const List = () => {
                    </Select>
            </FormControl>
          
-           <FormControl className='classes.formControl'>
+           <FormControl className={classes.formControl}>
                    <inputLabel>Rating</inputLabel>
                    <Select value={rating} onChange={(e) => setRating(e.target.value)}>
                        <MenuItem value={0}>All</MenuItem>
@@ -32,6 +47,14 @@ const List = () => {
 
                    </Select>
            </FormControl>
+           <Grid container spacing={3} className={classes.list}>
+               {places?.map((place, i) => (
+                   <Grid item key={i} sx={12}>
+                       <PlaceDetails place={place} />
+                   </Grid>
+               ))}
+
+           </Grid>
            </div>
            
          
